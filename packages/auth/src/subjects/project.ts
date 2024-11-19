@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { projectSchema } from '../models/projects'
+import { projectSchema } from '../models/project'
 
 export const projectSubject = z.tuple([
   z.union([
