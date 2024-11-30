@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import fastifyCors from "@fastify/cors";
 import {
-jsonSchemaTransform,
+//jsonSchemaTransform,
 serializerCompiler,
 validatorCompiler,
 type ZodTypeProvider
