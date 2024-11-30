@@ -14,16 +14,18 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  name         String?
-  email        String    @unique
-  passwordHash String?   @map("password_hash")
-  avatarUrl    String?   @map("avatar_url")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
-  tokens       Token[]
-  Account      Account[]
-  Invite       Invite[]
+  id                 String         @id @default(uuid())
+  name               String?
+  email              String         @unique
+  passwordHash       String?        @map("password_hash")
+  avatarUrl          String?        @map("avatar_url")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  updatedAt          DateTime       @updatedAt @map("updated_at")
+  tokens             Token[]
+  accounts           Account[]
+  invites            Invite[]
+  member_on          Member[]
+  owns_organizations Organization[]
 
   @@map("users")
 }
@@ -86,13 +88,24 @@ model Member {
   organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String       @map("organization_id")
 
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@unique([organizationId, userId])
   @@map("members")
 }
 
 model Organization {
-  id     String   @id @default(uuid())
-  Invite Invite[]
-  Member Member[]
+  id                        String   @id @default(uuid())
+  name                      String
+  slug                      String   @unique
+  domain                    String?  @unique
+  shouldAttachUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
+  avatarUrl                 String?  @map("avatar_url")
+  owner                     User     @relation(fields: [userId], references: [id])
+  userId                    String   @map("user_id")
+  invites                   Invite[]
+  members                   Member[]
 
   @@map("organizations")
 }
