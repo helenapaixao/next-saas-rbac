@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
+import { prisma } from "@/lib/prisma";
 
 export async function createAccount(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post("/users", {
@@ -11,7 +12,12 @@ export async function createAccount(app: FastifyInstance) {
         password: z.string().min(6)
       })
     }
-  }, () => {
-    return "User created!!"
+  }, (request, reply) => {
+    const {
+      name,
+      email,
+      password
+    } = request.body
+    const userWithSameEmail = await prisma
   })
 }
