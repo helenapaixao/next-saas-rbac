@@ -18,25 +18,27 @@ export async function createAccount(app: FastifyInstance) {
       name,
       email,
       password
-    } = request.body
-    const userWithSameEmail = await prisma.user.findUnique({
-      where: {email}
-    })
-    if(userWithSameEmail) {
-      return reply.status(400).send({
-        message:"user with same e-mail already exists"
-      })
-    }
-      const passwordHash = hash(password, 6)
+    } = request.body;
 
-      await prisma.user.create({
-        data: {
-          name,
-          email,
-          passwordHash
-        }
-      })
-      return reply.status(201).send()
-    
-  })
+    const userWithSameEmail = await prisma.user.findUnique({
+      where: { email }
+    });
+    if (userWithSameEmail) {
+      return reply.status(400).send({
+        message: "User with the same e-mail already exists"
+      });
+    }
+
+    const passwordHash = await hash(password, 6);
+
+    await prisma.user.create({
+      data: {
+        name,
+        email,
+        passwordHash
+      }
+    });
+
+    return reply.status(201).send();
+  });
 }
