@@ -31,7 +31,6 @@ export async function authenticateWithPassword(app: FastifyInstance) {
         return reply.status(400).send({
           message: "User does not have a password, use social login"
         })
-
       }
       const isPasswordValid = await compare(
         password,

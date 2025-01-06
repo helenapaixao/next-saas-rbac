@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import fastifySwagger from "@fastify/swagger";
+import fastifyJwt from "@fastify/jwt";
 import fastifyCors from '@fastify/cors'
 
 import {
@@ -28,7 +29,9 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 })
 
-
+app.register(fastifyJwt, {
+  secret: "my-jwt-secret"
+} )
 
 app.register(fastifyCors)
 app.register(createAccount)
