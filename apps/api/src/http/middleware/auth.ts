@@ -2,6 +2,8 @@ import type { FastifyInstance } from "fastify";
 import { UnauthorizedError } from "../routes/_errors/unauthorized-erros";
 
 export async function auth(app: FastifyInstance) {
+  app.decorateRequest("getCurrentUserId")
+  
   app.addHook("preHandler", async(request) => {
     request.getCurrentUserId = async () => {
       try {
