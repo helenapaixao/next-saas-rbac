@@ -1,9 +1,10 @@
 import type { FastifyInstance } from "fastify";
 import { ZodError } from "zod";
+
 import { BadRequestError } from "./routes/_errors/bad-request-error";
 import { UnauthorizedError } from "./routes/_errors/unauthorized-erros";
 
-type FastifyErrorHandler = FastifyInstance{"errorHandler"}
+type FastifyErrorHandler = FastifyInstance['errorHandler']
 
 export const errorHandler: FastifyErrorHandler = (error, request, reply) => {
   if(error instanceof ZodError) {
