@@ -1,10 +1,11 @@
+import { auth } from "@/http/middleware/auth";
 import { prisma } from "@/lib/prisma";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 
 export async function getProfile(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().get("/profile", {
+  app.withTypeProvider<ZodTypeProvider>().register(auth).get("/profile", {
     schema: {
       tags: ["auth"],
       summary: "Get authenticated user profile ",
@@ -21,7 +22,7 @@ export async function getProfile(app: FastifyInstance) {
  
     },
   }, async(request, reply) => {
-    const payload = await request.jwtVerify<{sub: string}>()
+    const userId = await request.getCurrentUserId()
     const user = await prisma.user.findUnique({
       select: {
         id: true,
@@ -30,7 +31,7 @@ export async function getProfile(app: FastifyInstance) {
         avatarUrl: true
       },
       where: {
-        id: payload.sub,
+        id: userId
       }, 
     })
 
