@@ -19,7 +19,6 @@ export async function authenticateWithPassword(app: FastifyInstance) {
           token: z.string(),
         })
       }
-
     },
   }, async(request, reply) => {
     const {email, password} = request.body
