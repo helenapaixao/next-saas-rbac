@@ -13,6 +13,9 @@ import {
 
 import { createAccount } from "./routes/auth/create-account";
 import { authenticateWithPassword } from "./routes/auth/authenticate-with-password";
+import { resetPassword } from "./routes/auth/reset-password";
+import { requestPasswordRecover } from "./routes/auth/request-password-recover";
+
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import { getProfile } from "./routes/auth/get-profile";
 import { errorHandler } from "./error-handler";
@@ -48,6 +51,8 @@ app.register(fastifyCors)
 app.register(createAccount)
 app.register(authenticateWithPassword);
 app.register(getProfile);
+app.register(resetPassword);
+app.register(requestPasswordRecover)
 
 
 app.listen({port: 3333}).then(() => {
