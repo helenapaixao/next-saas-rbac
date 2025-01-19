@@ -19,6 +19,7 @@ import { requestPasswordRecover } from "./routes/auth/request-password-recover";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import { getProfile } from "./routes/auth/get-profile";
 import { errorHandler } from "./error-handler";
+import { authenticateWithGithub } from "./routes/auth/authenticate-with-github";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -53,6 +54,7 @@ app.register(authenticateWithPassword);
 app.register(getProfile);
 app.register(resetPassword);
 app.register(requestPasswordRecover)
+app.register(authenticateWithGithub)
 
 
 app.listen({port: 3333}).then(() => {
