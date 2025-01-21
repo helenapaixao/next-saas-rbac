@@ -4,7 +4,7 @@ This project contains all the necessary boilerplate to setup a multi-tenant SaaS
 ### Authentication
 - [x] It should be able to authenticate using e-mail & password;
 - [ ] It should be able to authenticate using Github account;
-- [] It should be able to recover password using e-mail;
+- [x] It should be able to recover password using e-mail;
 - [x] It should be able to create an account (e-mail, name and password);
 ### Organizations
 - [ ] It should be able to create a new organization;
@@ -42,13 +42,13 @@ Roles & permissions.
 | Invite a member          | ✅            | ❌     | ❌      | ❌        |
 | Revoke an invite         | ✅            | ❌     | ❌      | ❌        |
 | List members             | ✅            | ✅     | ✅      | ❌        |
-| Transfer ownership       | ⚠️            | ❌     | ❌      | ❌        |
+| Transfer ownership       | ⚠️             |  ❌    | ❌      | ❌        |
 | Update member role       | ✅            | ❌     | ❌      | ❌        |
-| Delete member            | ✅            | ⚠️     | ❌      | ❌        |
+| Delete member            | ✅            | ⚠️      | ❌      | ❌        |
 | List projects            | ✅            | ✅     | ✅      | ❌        |
 | Create a new project     | ✅            | ✅     | ❌      | ❌        |
-| Update a project         | ✅            | ⚠️     | ❌      | ❌        |
-| Delete a project         | ✅            | ⚠️     | ❌      | ❌        |
+| Update a project         | ✅            | ⚠️      | ❌      | ❌        |
+| Delete a project         | ✅            | ⚠️      | ❌      | ❌        |
 | Get billing details      | ✅            | ❌     | ✅      | ❌        |
 | Export billing details   | ✅            | ❌     | ✅      | ❌        |
 > ✅ = allowed
