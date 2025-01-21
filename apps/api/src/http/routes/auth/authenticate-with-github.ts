@@ -43,7 +43,7 @@ export async function authenticateWithGithub(app: FastifyInstance) {
 
       const githubAcessTokenData = await githubAcessTokenResponse.json()
 
-      const { acess_token: githubAcessToken } = z
+      const { acess_token: githubAccessToken } = z
         .object({
           acess_token: z.string(),
           token_type: z.literal('bearer'),
@@ -63,7 +63,7 @@ export async function authenticateWithGithub(app: FastifyInstance) {
         id: githubId,
         name,
         email,
-        avatar_url: avatar_url,
+        avatar_url: avatarUrl,
       } = z
         .object({
           id: z.number().int().transform(String),
