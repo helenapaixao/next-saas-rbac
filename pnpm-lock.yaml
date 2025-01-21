@@ -38,6 +38,9 @@ importers:
       '@saas/auth':
         specifier: workspace:*
         version: link:../../packages/auth
+      '@saas/env':
+        specifier: workspace:*
+        version: link:../../packages/env
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -145,6 +148,9 @@ importers:
       '@saas/tsconfig':
         specifier: workspace:*
         version: link:../../config/typescript-config
+      '@types/node':
+        specifier: ^22.10.1
+        version: 22.10.1
 
 packages:
 
