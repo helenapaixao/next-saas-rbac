@@ -20,6 +20,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import { getProfile } from "./routes/auth/get-profile";
 import { errorHandler } from "./error-handler";
 import { authenticateWithGithub } from "./routes/auth/authenticate-with-github";
+import { env } from "@saas/env";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -57,6 +58,6 @@ app.register(requestPasswordRecover)
 app.register(authenticateWithGithub)
 
 
-app.listen({port: 3333}).then(() => {
+app.listen({port: env.SERVER_PORT}).then(() => {
   console.log("HTTP server running")
 })
