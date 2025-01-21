@@ -30,7 +30,7 @@ app.setValidatorCompiler(validatorCompiler)
 app.setErrorHandler(errorHandler)
 
 app.register(fastifySwagger, {
-  swagger: {
+  openapi: {
     info: {
       title: "Next.js Saas",
       description: "full-stack Saas app with multi-tenant & RBAC",
@@ -43,7 +43,13 @@ app.register(fastifySwagger, {
         name: "Authorization",
         description: "JWT obtained from authentication route"
       }
-    },
+    },components:{
+      bearerAuth: {
+        type: "http",
+        schema: "bearer",
+        bearerFormat: "JWT",
+      }
+    }
   },
   transform: jsonSchemaTransform,
 })
